@@ -4,6 +4,8 @@ use warnings;
 
 use Plack::Test;
 use Plack::Builder;
+use HTTP::Request::Common;
+use Test::More;
 
 ## test return content length
 my $app = sub {

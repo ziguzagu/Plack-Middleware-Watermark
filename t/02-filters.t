@@ -5,6 +5,7 @@ use warnings;
 use Plack::Test;
 use Plack::Builder;
 use HTTP::Request::Common;
+use Test::More;
 
 sub test_app {
     my ($content_type) = @_;
