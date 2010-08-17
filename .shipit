@@ -2,5 +2,5 @@ steps = FindVersion, ChangeVersion, CheckChangeLog, DistTest, Commit, Tag, MakeD
 git.tagpattern = %v
 git.push_to = origin
 twitter.config = ~/.twitter
-twitter.distname = HTML-Split
+twitter.distname = Plack-Middleware-Watermark
 twitter.message = shipped %d %v - soon at %u
