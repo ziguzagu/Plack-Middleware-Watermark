@@ -36,8 +36,13 @@ sub call {
                 :                                      ()
                 ;
             if ($start or $stop) {
-                my $comment = ref $self->comment eq 'CODE' ? $self->comment->($env) : $self->comment;
-                push @{ $res->[2] }, join(' ', $start, $comment, $stop);
+                return sub {
+                    my $chunk = shift;
+                    return unless defined $chunk;
+                    my $comment = ref $self->comment eq 'CODE' ? $self->comment->($env) : $self->comment;
+                    $chunk .= join ' ', $start, $comment, $stop;
+                    return $chunk;
+                };
             }
         }
     });
