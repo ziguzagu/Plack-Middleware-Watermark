@@ -1,6 +1,3 @@
-steps = FindVersion, ChangeVersion, CheckChangeLog, DistTest, Commit, Tag, MakeDist, UploadCPAN, Twitter
+steps = FindVersion, ChangeVersion, CheckChangeLog, DistTest, Commit, Tag, MakeDist, UploadCPAN
 git.tagpattern = %v
 git.push_to = origin
-twitter.config = ~/.twitter
-twitter.distname = Plack-Middleware-Watermark
-twitter.message = shipped %d %v - soon at %u
