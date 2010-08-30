@@ -23,7 +23,8 @@ MANIFEST			This list of files
 META.yml
 README
 t/00-compile.t
-t/01-basics.t
+t/01-basic.t
+t/02-filters.t
 xt/perlcritic.t
 xt/pod.t
 xt/podspell.t
