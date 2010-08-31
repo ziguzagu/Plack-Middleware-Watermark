@@ -92,7 +92,7 @@ Hiroshi Sakai E<lt>ziguzagu@cpan.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2010 Six Apart, Ltd. All rights reserved.
+Copyright (C) 2010 Six Apart, Ltd. All rights reserved.
 
 =head1 LICENSE
 
