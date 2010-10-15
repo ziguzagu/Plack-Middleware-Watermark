@@ -27,13 +27,14 @@ sub call {
     $self->response_cb($res, sub {
         my $res  = shift;
         my $type = Plack::Util::header_get($res->[1], 'Content-Type');
+        ($type) = split /;\s*/, $type;
         if ($type && $res->[0] == 200) {
             my ($start, $stop)
-                = ( $type =~ m{^text/(?:html|xml)} ) ? ( '<!--', '-->' )
-                : ( $type =~ m{^application/(?:xml|xhtml\+xml|rss\+xml|atom\+xml)} ) ? ( '<!--', '-->' )
-                : ( $type =~ m{^text/css} )          ? ( '/*', '*/' )
-                : ( $type =~ m{^text/javascript} )   ? ( '//', '' )
-                :                                      ()
+                = ( $type =~ m{^text/(?:html|xml)$} ) ? ( '<!--', '-->' )
+                : ( $type =~ m{^application/(?:xml|xhtml\+xml|rss\+xml|atom\+xml)$} ) ? ( '<!--', '-->' )
+                : ( $type eq 'text/css' )             ? ( '/*', '*/' )
+                : ( $type eq 'text/javascript' )      ? ( '//', '' )
+                :                                       ()
                 ;
             if ($start or $stop) {
                 return sub {

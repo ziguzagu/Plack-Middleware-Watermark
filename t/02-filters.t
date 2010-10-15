@@ -47,7 +47,7 @@ sub test_app {
     ## javascript
     my @content_types = (
         'text/javascript',
-        'text/javascript+json',
+        'application/javascript',
     );
     for my $content_type (@content_types) {
         my $app = test_app($content_type);
