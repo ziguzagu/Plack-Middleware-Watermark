@@ -31,7 +31,7 @@ sub call {
         if ($type && $res->[0] == 200) {
             my ($start, $stop)
                 = ( $type =~ m{^text/(?:html|xml)$} ) ? ( '<!--', '-->' )
-                : ( $type =~ m{^application/(?:xml|xhtml\+xml|rss\+xml|atom\+xml)$} ) ? ( '<!--', '-->' )
+                : ( $type =~ m{^application/(?:(?:xhtml|rss|atom)\+)?xml$} ) ? ( '<!--', '-->' )
                 : ( $type eq 'text/css' )             ? ( '/*', '*/' )
                 : ( $type =~ m{^(?:text|application)/javascript$} ) ? ( '//', '' )
                 :                                       ()
