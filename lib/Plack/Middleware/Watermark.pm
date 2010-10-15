@@ -19,6 +19,29 @@ sub prepare_app {
     }
 }
 
+my %comment_style = (
+    'html' => [ '<!--', '-->' ],
+    'xml'  => [ '<!--', '-->' ],
+    'css'  => [ '/*', '*/' ],
+    'js'   => [ '//', '' ],
+);
+
+my %mime_type = (
+    # html
+    'text/html'             => 'html',
+    'application/xhtml+xml' => 'html',
+    # xml
+    'text/xml'             => 'xml',
+    'application/xml'      => 'xml',
+    'application/rss+xml'  => 'xml',
+    'application/atom+xml' => 'xml',
+    # css
+    'text/css' => 'css',
+    # js
+    'text/javascript'        => 'js',
+    'application/javascript' => 'js',
+);
+
 sub call {
     my $self  = shift;
     my ($env) = @_;
@@ -27,15 +50,9 @@ sub call {
     $self->response_cb($res, sub {
         my $res  = shift;
         my $type = Plack::Util::header_get($res->[1], 'Content-Type');
-        ($type) = split /;\s*/, $type;
         if ($type && $res->[0] == 200) {
-            my ($start, $stop)
-                = ( $type =~ m{^text/(?:html|xml)$} ) ? ( '<!--', '-->' )
-                : ( $type =~ m{^application/(?:(?:xhtml|rss|atom)\+)?xml$} ) ? ( '<!--', '-->' )
-                : ( $type eq 'text/css' )             ? ( '/*', '*/' )
-                : ( $type =~ m{^(?:text|application)/javascript$} ) ? ( '//', '' )
-                :                                       ()
-                ;
+            ($type) = split /;\s*/, $type;
+            my ($start, $stop) = @{ $comment_style{$mime_type{$type}||''} || [] };
             if ($start or $stop) {
                 return sub {
                     my $chunk = shift;
