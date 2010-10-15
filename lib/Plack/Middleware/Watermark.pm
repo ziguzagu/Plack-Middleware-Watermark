@@ -33,7 +33,7 @@ sub call {
                 = ( $type =~ m{^text/(?:html|xml)$} ) ? ( '<!--', '-->' )
                 : ( $type =~ m{^application/(?:xml|xhtml\+xml|rss\+xml|atom\+xml)$} ) ? ( '<!--', '-->' )
                 : ( $type eq 'text/css' )             ? ( '/*', '*/' )
-                : ( $type eq 'text/javascript' )      ? ( '//', '' )
+                : ( $type =~ m{^(?:text|application)/javascript$} ) ? ( '//', '' )
                 :                                       ()
                 ;
             if ($start or $stop) {
