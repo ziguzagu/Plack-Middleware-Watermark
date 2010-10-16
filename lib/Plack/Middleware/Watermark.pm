@@ -73,7 +73,7 @@ __END__
 
 =head1 NAME
 
-Plack::Middleware::Watermakr - Add watermark to response body
+Plack::Middleware::Watermark - Add watermark to response body
 
 =head1 SYNOPSIS
 

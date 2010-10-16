@@ -1,5 +1,5 @@
 NAME
-    Plack::Middleware::Watermakr - Add watermark to response body
+    Plack::Middleware::Watermark - Add watermark to response body
 
 SYNOPSIS
       use Plack::Builder;
